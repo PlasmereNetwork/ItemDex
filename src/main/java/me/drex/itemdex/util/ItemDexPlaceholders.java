@@ -8,6 +8,7 @@ import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 public class ItemDexPlaceholders {
@@ -17,10 +18,15 @@ public class ItemDexPlaceholders {
             if (argument != null) {
                 try {
                     int i = Integer.parseInt(argument);
-                    ItemDexManager.ItemDexEntry itemDexEntry = ItemDexManager.getLeaderboard().get(i);
-                    Optional<GameProfile> gameProfile = context.server().getProfileCache().get(itemDexEntry.uuid());
-                    Component name = gameProfile.map(ComponentUtils::getDisplayName).orElseGet(() -> Component.literal("Unknown"));
-                    return PlaceholderResult.value(name);
+                    List<ItemDexManager.ItemDexEntry> leaderboard = ItemDexManager.getLeaderboard();
+                    if (i <= leaderboard.size() - 1) {
+                        ItemDexManager.ItemDexEntry itemDexEntry = leaderboard.get(i);
+                        Optional<GameProfile> gameProfile = context.server().getProfileCache().get(itemDexEntry.uuid());
+                        Component name = gameProfile.map(ComponentUtils::getDisplayName).orElseGet(() -> Component.literal("Unknown"));
+                        return PlaceholderResult.value(name);
+                    } else {
+                        return PlaceholderResult.value("Doesn't exist!");
+                    }
                 } catch (IllegalArgumentException e) {
                     return PlaceholderResult.invalid("\"" + argument + "\" is not an integer!");
                 }
