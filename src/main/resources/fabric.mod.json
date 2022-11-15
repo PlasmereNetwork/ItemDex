@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "itemdex",
+  "version": "${version}",
+  "name": "ItemDex",
+  "description": "ItemDex logs all items that you have appraised, but only logs it once",
+  "authors": [
+    "Drex"
+  ],
+  "contact": {},
+  "license": "unlicense",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "me.drex.itemdex.Itemdex"
+    ]
+  },
+  "mixins": [
+    "itemdex.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*"
+  }
+}
