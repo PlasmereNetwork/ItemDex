@@ -79,7 +79,7 @@ public class ItemDexManager {
     public static List<ItemDexEntry> getLeaderboard() {
         if (dirty) {
             dirty = false;
-            return leaderboard = data.entrySet().stream().map(uuidSetEntry -> new ItemDexEntry(uuidSetEntry.getKey(), uuidSetEntry.getValue().size())).sorted(Comparator.comparingInt(ItemDexEntry::amount)).toList();
+            return leaderboard = data.entrySet().stream().map(uuidSetEntry -> new ItemDexEntry(uuidSetEntry.getKey(), uuidSetEntry.getValue().size())).sorted(Comparator.comparingInt(ItemDexEntry::amount).reversed()).toList();
         } else {
             return leaderboard;
         }
