@@ -26,6 +26,10 @@ public class AppraiseCommand {
             ctx.getSource().sendFailure(Component.literal("You need to hold an item!"));
             return 0;
         } else {
+            if (item.isEnchanted() || item.hasCustomHoverName()) {
+                ctx.getSource().sendFailure(Component.literal("You can't appraise this item").append(item.getItem().getDescription()));
+                return 0;
+            }
             boolean success = ItemDexManager.appraise(player, item.getItem());
             if (success) {
                 ctx.getSource().sendSuccess(Component.literal("Successfully appraised ").append(item.getItem().getDescription()), false);
