@@ -34,7 +34,6 @@ public class ConfigManager {
             Itemdex.LOGGER.error("Failed to load config!", ex);
         }
 
-        save();
     }
 
     private static void save() {
