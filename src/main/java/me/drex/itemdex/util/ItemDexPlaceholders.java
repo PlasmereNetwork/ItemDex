@@ -25,7 +25,7 @@ public class ItemDexPlaceholders {
                         Component name = gameProfile.map(ComponentUtils::getDisplayName).orElseGet(() -> Component.literal("Unknown"));
                         return PlaceholderResult.value(name);
                     } else {
-                        return PlaceholderResult.value("Doesn't exist!");
+                        return PlaceholderResult.value("Not Claimed Yet!");
                     }
                 } catch (IllegalArgumentException e) {
                     return PlaceholderResult.invalid("\"" + argument + "\" is not an integer!");
@@ -44,7 +44,7 @@ public class ItemDexPlaceholders {
                         ItemDexManager.ItemDexEntry itemDexEntry = leaderboard.get(i);
                         return PlaceholderResult.value(String.valueOf(itemDexEntry.amount()));
                     } else {
-                        return PlaceholderResult.value("Doesn't exist!");
+                        return PlaceholderResult.value("Not Claimed Yet!");
                     }
                 } catch (IllegalArgumentException e) {
                     return PlaceholderResult.invalid("\"" + argument + "\" is not an integer!");
@@ -60,7 +60,6 @@ public class ItemDexPlaceholders {
                 return PlaceholderResult.value(String.valueOf(count));
             } else {
                 return PlaceholderResult.invalid("No player!");
-
             }
         });
     }
