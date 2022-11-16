@@ -35,6 +35,25 @@ public class ItemDexPlaceholders {
             }
         });
 
+        Placeholders.register(new ResourceLocation("itemdex", "topcount"), (context, argument) -> {
+            if (argument != null) {
+                try {
+                    int i = Integer.parseInt(argument);
+                    List<ItemDexManager.ItemDexEntry> leaderboard = ItemDexManager.getLeaderboard();
+                    if (i <= leaderboard.size() - 1) {
+                        ItemDexManager.ItemDexEntry itemDexEntry = leaderboard.get(i);
+                        return PlaceholderResult.value(String.valueOf(itemDexEntry.amount()));
+                    } else {
+                        return PlaceholderResult.value("Doesn't exist!");
+                    }
+                } catch (IllegalArgumentException e) {
+                    return PlaceholderResult.invalid("\"" + argument + "\" is not an integer!");
+                }
+            } else {
+                return PlaceholderResult.invalid("No argument!");
+            }
+        });
+
         Placeholders.register(new ResourceLocation("itemdex", "count"), (context, argument) -> {
             if (context.hasPlayer()) {
                 int count = ItemDexManager.data.getOrDefault(context.player().getUUID(), new HashSet<>()).size();

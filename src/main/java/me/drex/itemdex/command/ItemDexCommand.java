@@ -18,10 +18,7 @@ public class ItemDexCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-                Commands.literal("itemdex")/*.then(
-                                Commands.argument("page", IntegerArgumentType.integer(1))
-                                        .executes(ctx ->  execute(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "page")))
-                        )*/
+                Commands.literal("itemdex")
                         .executes(ctx -> execute(ctx.getSource()))
         );
     }
